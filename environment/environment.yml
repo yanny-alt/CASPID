@@ -1,0 +1,27 @@
+name: caspid
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - biopython
+  - rdkit
+  - jupyter
+  - pymol-open-source
+  - pip
+  - pip:
+    - xgboost
+    - shap
+    - boruta
+    - meeko
+    - openbabel-wheel
+    - openpyxl
+    - xlrd
+    - fuzzywuzzy
+    - python-Levenshtein
