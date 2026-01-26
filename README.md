@@ -30,7 +30,7 @@ CASPID is a machine learning framework that discovers context-dependent protein-
 ┌─────────────────────────────────────────────────────────────────┐
 │              PHASE 3: CONSENSUS MOLECULAR DOCKING               │
 ├─────────────────────────────────────────────────────────────────┤
-│  AutoDock Vina  │  PLANTS  │  LeDock  →  Consensus Poses       │
+│  AutoDock Vina  │  SMINA  │  LeDock  →  Consensus Poses       │
 │  (RMSD < 2.0Å agreement criterion)                             │
 └──────────────┬──────────────────────────────────────────────────┘
                │
