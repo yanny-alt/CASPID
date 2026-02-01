@@ -1,0 +1,26 @@
+{
+  "EGFR": {
+    "receptor_file": "/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/egfr_prepared.pdb",
+    "center_x": 29.0,
+    "center_y": 6.3,
+    "center_z": 54.2,
+    "size_x": 25.0,
+    "size_y": 25.0,
+    "size_z": 25.0,
+    "exhaustiveness": 32,
+    "num_modes": 20,
+    "description": "EGFR kinase domain with erlotinib"
+  },
+  "BRAF": {
+    "receptor_file": "/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/braf_prepared.pdb",
+    "center_x": 6.6,
+    "center_y": -16.9,
+    "center_z": -35.7,
+    "size_x": 25.0,
+    "size_y": 25.0,
+    "size_z": 25.0,
+    "exhaustiveness": 32,
+    "num_modes": 20,
+    "description": "BRAF V600E with vemurafenib"
+  }
+}
