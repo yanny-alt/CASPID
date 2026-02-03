@@ -130,8 +130,8 @@ python scripts/modeling/04_train_caspid.py
 
 - [x] Project structure created
 - [x] Data downloaded
-- [ ] Data integration
-- [ ] Consensus docking
+- [x] Data integration
+- [x] Consensus docking
 - [ ] Feature extraction
 - [ ] Feature selection
 - [ ] Neural conditioning layer
