@@ -1,0 +1,12 @@
+{
+  "total_common_dockings": 29,
+  "high_confidence": 24,
+  "medium_confidence": 5,
+  "low_confidence": 0,
+  "success_rate_percent": 100.0,
+  "mean_rmsd_angstrom": 0.65,
+  "median_rmsd_angstrom": 0.23,
+  "mean_affinity_diff": 0.12,
+  "affinity_correlation": 0.966,
+  "quality_status": "PASS"
+}
