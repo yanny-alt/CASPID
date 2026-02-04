@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-02-04T10:50:36.766145",
+  "n_samples": 23248,
+  "n_features_total": 92,
+  "n_selected": 5,
+  "selection_threshold": 0.09189017117023468,
+  "shap_mean": 0.01758713088929653,
+  "shap_max": 0.49334439635276794,
+  "runtime_train_seconds": 0.35907,
+  "runtime_shap_seconds": 0.41181,
+  "model_performance": {
+    "train_r2": 0.3938363733651362,
+    "test_r2": 0.3837941194519048,
+    "train_rmse": 1.4228122239516776,
+    "test_rmse": 1.4535661101084831
+  }
+}

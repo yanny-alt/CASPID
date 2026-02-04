@@ -1,0 +1,5 @@
+num_hydrophobic_pharmacophore
+abs_total_charge
+ligand_efficiency
+num_heavy_atoms
+num_negative_ionizable

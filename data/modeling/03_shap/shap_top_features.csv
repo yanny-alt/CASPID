@@ -1,0 +1,6 @@
+feature,shap_importance
+num_hydrophobic_pharmacophore,0.4933444
+abs_total_charge,0.22078696
+ligand_efficiency,0.11548633
+num_heavy_atoms,0.1136807
+num_negative_ionizable,0.10531803
