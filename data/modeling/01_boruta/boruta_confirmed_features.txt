@@ -1,0 +1,10 @@
+ligand_volume
+ligand_surface_area
+shape_complementarity
+ligand_sasa
+abs_total_charge
+tpsa
+fraction_csp3
+lipophilic_efficiency
+num_hydrophobic_pharmacophore
+num_negative_ionizable

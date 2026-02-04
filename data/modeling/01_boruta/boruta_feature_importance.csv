@@ -1,0 +1,11 @@
+feature,importance
+num_hydrophobic_pharmacophore,0.6031714840334681
+abs_total_charge,0.1658387029423164
+num_negative_ionizable,0.07346520819856422
+ligand_sasa,0.031810373162524504
+shape_complementarity,0.02865958175898501
+fraction_csp3,0.022776729688510963
+tpsa,0.021311640627113923
+ligand_volume,0.020227267445101574
+lipophilic_efficiency,0.018318709739008697
+ligand_surface_area,0.014420302404406546
