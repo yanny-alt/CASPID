@@ -134,8 +134,8 @@ python scripts/modeling/04_train_caspid.py
 - [x] Consensus docking
 - [x] Feature extraction
 - [x] Feature selection
-- [ ] Neural conditioning layer
-- [ ] Model training
+- [x] Neural conditioning layer
+- [x] Model training
 - [ ] Validation
 - [ ] Manuscript
 
