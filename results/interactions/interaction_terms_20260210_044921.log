@@ -1,0 +1,120 @@
+[2026-02-10 04:49:21] 
+1. Loading data...
+[2026-02-10 04:49:22] Dataset: (23248, 193)
+[2026-02-10 04:49:22] Structural features: 32
+[2026-02-10 04:49:22] Transcriptomic features: 95
+[2026-02-10 04:49:22] Data prepared
+[2026-02-10 04:49:22] 
+2. Loading optimal hyperparameters...
+[2026-02-10 04:49:22] Loaded optimal parameters from Script 09
+[2026-02-10 04:49:22]   colsample_bytree: 0.8
+[2026-02-10 04:49:22]   learning_rate: 0.1
+[2026-02-10 04:49:22]   max_depth: 8
+[2026-02-10 04:49:22]   n_estimators: 200
+[2026-02-10 04:49:22]   reg_alpha: 0.1
+[2026-02-10 04:49:22]   reg_lambda: 1.0
+[2026-02-10 04:49:22]   subsample: 0.8
+[2026-02-10 04:49:22] 
+3. Testing top interactions (structural × transcriptomic)...
+[2026-02-10 04:49:22] Strategy: Test top 50 structural features × top 50 transcriptomic features
+[2026-02-10 04:49:22] Total possible interactions: 32 × 95 = 3,040
+[2026-02-10 04:49:22] Testing subset for computational feasibility
+[2026-02-10 04:49:22] 
+Top 20 structural features by correlation:
+[2026-02-10 04:49:22]   1. abs_total_charge: r=0.489
+[2026-02-10 04:49:22]   2. num_negative_ionizable: r=0.443
+[2026-02-10 04:49:22]   3. num_hydrophobic_pharmacophore: r=0.431
+[2026-02-10 04:49:22]   4. ligand_surface_area: r=0.402
+[2026-02-10 04:49:22]   5. num_heavy_atoms: r=0.402
+[2026-02-10 04:49:22]   6. ligand_volume: r=0.387
+[2026-02-10 04:49:22]   7. ligand_efficiency: r=0.386
+[2026-02-10 04:49:22]   8. num_rotatable_bonds: r=0.377
+[2026-02-10 04:49:22]   9. pharmacophore_radius: r=0.361
+[2026-02-10 04:49:22]   10. max_negative_charge: r=0.345
+[2026-02-10 04:49:22]   11. ligand_sasa: r=0.343
+[2026-02-10 04:49:22]   12. num_hba_pharmacophore: r=0.329
+[2026-02-10 04:49:22]   13. num_polar_atoms: r=0.328
+[2026-02-10 04:49:22]   14. num_nonpolar_atoms: r=0.323
+[2026-02-10 04:49:22]   15. total_charge: r=0.316
+[2026-02-10 04:49:22]   16. pharmacophore_span: r=0.254
+[2026-02-10 04:49:22]   17. spatial_distribution_y: r=0.243
+[2026-02-10 04:49:22]   18. fraction_csp3: r=0.201
+[2026-02-10 04:49:22]   19. spatial_distribution_x: r=0.183
+[2026-02-10 04:49:22]   20. logp: r=0.178
+[2026-02-10 04:49:22] 
+Top 20 transcriptomic features by correlation:
+[2026-02-10 04:49:22]   1. TEAD1 (7003): r=0.233
+[2026-02-10 04:49:22]   2. CUEDC1 (404093): r=0.221
+[2026-02-10 04:49:22]   3. BCAR1 (9564): r=0.218
+[2026-02-10 04:49:22]   4. RAPH1 (65059): r=0.216
+[2026-02-10 04:49:22]   5. TJP1 (7082): r=0.215
+[2026-02-10 04:49:22]   6. PTPN7 (5778): r=0.214
+[2026-02-10 04:49:22]   7. ARHGAP29 (9411): r=0.213
+[2026-02-10 04:49:22]   8. WFS1 (7466): r=0.212
+[2026-02-10 04:49:22]   9. ERRFI1 (54206): r=0.212
+[2026-02-10 04:49:22]   10. SNX21 (90203): r=0.210
+[2026-02-10 04:49:22]   11. PHLDB1 (23187): r=0.210
+[2026-02-10 04:49:22]   12. NCKAP1 (10787): r=0.210
+[2026-02-10 04:49:22]   13. WAS (7454): r=0.209
+[2026-02-10 04:49:22]   14. IKZF1 (10320): r=0.209
+[2026-02-10 04:49:22]   15. PARVA (55742): r=0.208
+[2026-02-10 04:49:22]   16. CNN3 (1266): r=0.208
+[2026-02-10 04:49:22]   17. CD151 (977): r=0.208
+[2026-02-10 04:49:22]   18. FAM114A1 (92689): r=0.207
+[2026-02-10 04:49:22]   19. PTTG1IP (754): r=0.207
+[2026-02-10 04:49:22]   20. GNA11 (2767): r=0.206
+[2026-02-10 04:49:22] 
+4. Testing 20 × 20 = 400 interactions...
+[2026-02-10 04:49:28] Base model R²: 0.9823
+[2026-02-10 05:34:52] Tested 400 interactions
+[2026-02-10 05:34:52] 
+5. Applying FDR correction...
+[2026-02-10 05:34:52] Significant interactions (FDR < 0.05): 376/400
+[2026-02-10 05:34:52] 
+Top 10 significant interactions:
+[2026-02-10 05:34:52]   logp × PARVA (55742)
+[2026-02-10 05:34:52]     ΔR² = +0.001708, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   fraction_csp3 × IKZF1 (10320)
+[2026-02-10 05:34:52]     ΔR² = +0.001581, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   fraction_csp3 × PARVA (55742)
+[2026-02-10 05:34:52]     ΔR² = +0.001685, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   fraction_csp3 × CNN3 (1266)
+[2026-02-10 05:34:52]     ΔR² = +0.001512, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   fraction_csp3 × CD151 (977)
+[2026-02-10 05:34:52]     ΔR² = +0.000695, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   fraction_csp3 × FAM114A1 (92689)
+[2026-02-10 05:34:52]     ΔR² = +0.002567, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   fraction_csp3 × PTTG1IP (754)
+[2026-02-10 05:34:52]     ΔR² = +0.002682, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   fraction_csp3 × GNA11 (2767)
+[2026-02-10 05:34:52]     ΔR² = +0.002483, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   logp × IKZF1 (10320)
+[2026-02-10 05:34:52]     ΔR² = +0.000640, p_adj = 1.1938e-16
+[2026-02-10 05:34:52]   spatial_distribution_x × CUEDC1 (404093)
+[2026-02-10 05:34:52]     ΔR² = +0.000069, p_adj = 1.1938e-16
+[2026-02-10 05:34:52] 
+6. Cross-validation with top interactions...
+[2026-02-10 05:34:52] Testing model with top 10 interactions...
+[2026-02-10 05:35:05]   Fold 1: Base=0.9043, +Interactions=0.9123, Δ=+0.0079
+[2026-02-10 05:35:19]   Fold 2: Base=0.9015, +Interactions=0.9118, Δ=+0.0103
+[2026-02-10 05:35:32]   Fold 3: Base=0.9032, +Interactions=0.9121, Δ=+0.0090
+[2026-02-10 05:35:44]   Fold 4: Base=0.9059, +Interactions=0.9130, Δ=+0.0071
+[2026-02-10 05:35:57]   Fold 5: Base=0.8991, +Interactions=0.9083, Δ=+0.0092
+[2026-02-10 05:35:57] 
+Cross-validation results:
+[2026-02-10 05:35:57]   Base model: R² = 0.9028
+[2026-02-10 05:35:57]   + Interactions: R² = 0.9115
+[2026-02-10 05:35:57]   Improvement: ΔR² = +0.0087
+[2026-02-10 05:35:57]   ✓ Interactions provide measurable improvement
+[2026-02-10 05:35:57] 
+7. Saving results...
+[2026-02-10 05:35:57] Saved: /Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/results/interactions/interaction_analysis.csv
+[2026-02-10 05:35:57] Saved: /Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/results/interactions/interaction_summary.json
+[2026-02-10 05:35:57] 
+======================================================================
+[2026-02-10 05:35:57] INTERACTION TERM ANALYSIS COMPLETE
+[2026-02-10 05:35:57] ======================================================================
+[2026-02-10 05:35:57] 
+Found 376 significant interactions
+[2026-02-10 05:35:57] Recommend including top 10 in final model
+[2026-02-10 05:35:57] ======================================================================

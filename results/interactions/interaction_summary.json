@@ -1,0 +1,118 @@
+{
+  "timestamp": "2026-02-10T05:35:57.703276",
+  "total_tested": 400,
+  "significant_fdr": 376,
+  "base_r2": 0.9823327507733915,
+  "top_interactions": [
+    {
+      "structural_feature": "logp",
+      "transcriptomic_feature": "PARVA (55742)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9840412090483581,
+      "r2_improvement": 0.0017084582749665733,
+      "f_statistic": 2475.0969817774085,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "fraction_csp3",
+      "transcriptomic_feature": "IKZF1 (10320)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9839133183607228,
+      "r2_improvement": 0.001580567587331272,
+      "f_statistic": 2271.6134650091954,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "fraction_csp3",
+      "transcriptomic_feature": "PARVA (55742)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9840172740082757,
+      "r2_improvement": 0.0016845232348841055,
+      "f_statistic": 2436.766870099998,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "fraction_csp3",
+      "transcriptomic_feature": "CNN3 (1266)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9838448809010563,
+      "r2_improvement": 0.0015121301276647126,
+      "f_statistic": 2164.0477137610114,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "fraction_csp3",
+      "transcriptomic_feature": "CD151 (977)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9830279280784243,
+      "r2_improvement": 0.0006951773050327681,
+      "f_statistic": 946.9968879830664,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "fraction_csp3",
+      "transcriptomic_feature": "FAM114A1 (92689)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9848993942194785,
+      "r2_improvement": 0.0025666434460869247,
+      "f_statistic": 3929.6964198664396,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "fraction_csp3",
+      "transcriptomic_feature": "PTTG1IP (754)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9850144334537688,
+      "r2_improvement": 0.002681682680377273,
+      "f_statistic": 4137.347986080312,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "fraction_csp3",
+      "transcriptomic_feature": "GNA11 (2767)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9848155961965518,
+      "r2_improvement": 0.0024828454231602404,
+      "f_statistic": 3780.4175209321465,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "logp",
+      "transcriptomic_feature": "IKZF1 (10320)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9829728831227817,
+      "r2_improvement": 0.0006401323493901989,
+      "f_statistic": 869.1935355011815,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "spatial_distribution_x",
+      "transcriptomic_feature": "CUEDC1 (404093)",
+      "base_r2": 0.9823327507733915,
+      "interaction_r2": 0.9824015095328275,
+      "r2_improvement": 6.875875943590515e-05,
+      "f_statistic": 90.33175436962806,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1937881985216736e-16,
+      "significant_fdr": true
+    }
+  ]
+}
