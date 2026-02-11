@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-02-10T06:18:32.957487",
+  "target": "EGFR",
+  "n_samples": 23248,
+  "n_structural_features": 32,
+  "n_transcriptomic_features": 95,
+  "n_interactions": 10,
+  "total_features": 137,
+  "optimal_params": {
+    "n_estimators": 200,
+    "max_depth": 8,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_alpha": 0.1,
+    "reg_lambda": 1.0
+  },
+  "performance": {
+    "full_dataset_r2": 0.9866550695843112,
+    "full_dataset_rmse": 0.21167549719023734,
+    "full_dataset_mae": 0.15767614650651574,
+    "cv_mean_r2": 0.9020996075128963,
+    "cv_std_r2": 0.003934904142977328,
+    "pearson_r": 0.9939185259517826,
+    "spearman_r": 0.9930267766121325
+  },
+  "top_structural_features": [
+    {
+      "feature": "num_hydrophobic_pharmacophore",
+      "importance": 0.47145503759384155
+    },
+    {
+      "feature": "ligand_efficiency",
+      "importance": 0.03872421011328697
+    },
+    {
+      "feature": "num_negative_ionizable",
+      "importance": 0.016367610543966293
+    },
+    {
+      "feature": "abs_total_charge",
+      "importance": 0.009551755152642727
+    },
+    {
+      "feature": "ligand_volume",
+      "importance": 0.009110454469919205
+    },
+    {
+      "feature": "num_hba_pharmacophore",
+      "importance": 0.009016784839332104
+    },
+    {
+      "feature": "max_negative_charge",
+      "importance": 0.008918827399611473
+    },
+    {
+      "feature": "ligand_surface_area",
+      "importance": 0.006868251133710146
+    },
+    {
+      "feature": "ligand_sasa",
+      "importance": 0.006827299017459154
+    },
+    {
+      "feature": "spatial_distribution_x",
+      "importance": 0.006340210326015949
+    }
+  ],
+  "top_transcriptomic_features": [
+    {
+      "feature": "TJP1 (7082)",
+      "importance": 0.017117111012339592
+    },
+    {
+      "feature": "TNS2 (23371)",
+      "importance": 0.01686059683561325
+    },
+    {
+      "feature": "TEAD1 (7003)",
+      "importance": 0.011939574033021927
+    },
+    {
+      "feature": "BCL2L1 (598)",
+      "importance": 0.008468753658235073
+    },
+    {
+      "feature": "ITGA3 (3675)",
+      "importance": 0.007782883942127228
+    },
+    {
+      "feature": "WFS1 (7466)",
+      "importance": 0.007657465524971485
+    },
+    {
+      "feature": "SHISA4 (149345)",
+      "importance": 0.007159363012760878
+    },
+    {
+      "feature": "PXN (5829)",
+      "importance": 0.007080861367285252
+    },
+    {
+      "feature": "MET (4233)",
+      "importance": 0.0068903411738574505
+    },
+    {
+      "feature": "ERRFI1 (54206)",
+      "importance": 0.006447439081966877
+    }
+  ]
+}
