@@ -6,6 +6,7 @@ CASPID is a machine learning framework that discovers context-dependent protein-
 - Structural features from consensus molecular docking
 - Transcriptomic cellular context
 - Neural conditioning layer for context-dependent feature reweighting
+- CASPID learns when structural binding rules hold and when cellular context rewires them, enabling context-conditioned structure–activity modeling
 
 ## Pipeline
 ```
@@ -57,7 +58,7 @@ CASPID is a machine learning framework that discovers context-dependent protein-
 ┌─────────────────────────────────────────────────────────────────┐
 │         PHASE 6: NEURAL CONDITIONING LAYER (INNOVATION)         │
 ├─────────────────────────────────────────────────────────────────┤
-│  Structural Features (30) ──┐                                  │
+│  Structural Features (24) ──┐                                  │
 │                             ├──→ Conditioning → Weighted        │
 │  Transcriptomics (100) ─────┘      Layer        Features       │
 │                                                                 │
