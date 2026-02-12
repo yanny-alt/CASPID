@@ -38,10 +38,10 @@ CASPID is a machine learning framework that discovers context-dependent protein-
 ┌─────────────────────────────────────────────────────────────────┐
 │            PHASE 4: STRUCTURAL FEATURE EXTRACTION               │
 ├─────────────────────────────────────────────────────────────────┤
-│  • Distance-based (100)     • Geometric (60)                   │
-│  • Physicochemical (80)     • Interaction (60)                 │
-│  • Pharmacophore (40)                                          │
-│  Total: ~340 features per compound-pose                       │
+│  • Distance-based (114 raw → 60 QC)     • Geometric (18)                   │
+│  • Physicochemical (26)     • Interaction (18)                 │
+│  • Pharmacophore (14)                                          │
+│  Total: 193 raw → 92 QC features per compound–pose                       │
 └──────────────┬──────────────────────────────────────────────────┘
                │
                ▼
@@ -49,7 +49,7 @@ CASPID is a machine learning framework that discovers context-dependent protein-
 │              PHASE 5: FEATURE SELECTION (ML)                    │
 ├─────────────────────────────────────────────────────────────────┤
 │  Boruta ──┐                                                    │
-│  MI ──────┼──→  Consensus (≥2/3 methods)  →  ~30 features     │
+│  MI ──────┼──→  Consensus (≥2/3 methods)  →  ~24 features     │
 │  SHAP ────┘                                                    │
 └──────────────┬──────────────────────────────────────────────────┘
                │
