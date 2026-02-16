@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-02-16T19:51:32.363709",
+  "n_samples": 1364,
+  "n_drugs": 2,
+  "n_cell_lines": 682,
+  "n_transcriptomic_features": 102,
+  "n_docking_features": 92,
+  "n_total_features": 194,
+  "target_mean": 4.339601741202346,
+  "target_std": 1.6258668684630277
+}
