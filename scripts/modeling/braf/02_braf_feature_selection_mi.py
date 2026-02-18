@@ -103,12 +103,33 @@ log(f"\n✓ Missing value check:")
 log(f"  Features with missing: {(missing_per_feature > 0).sum()}")
 log(f"  Max missing per feature: {missing_per_feature.max()} ({missing_per_feature.max()/X.shape[0]*100:.1f}%)")
 
-# Impute missing values with median
-if missing_mask.any():
+# CRITICAL FIX: Filter BEFORE imputation
+log(f"\n✓ Filtering features with >50% missing values...")
+missing_pct_raw = missing_per_feature / X.shape[0]
+valid_mask = missing_pct_raw < 0.5
+
+log(f"  Total features: {len(docking_features)}")
+log(f"  Features with >50% missing: {(~valid_mask).sum()}")
+log(f"  Valid features to use: {valid_mask.sum()}")
+
+# Filter features and data BEFORE imputation
+docking_features = [docking_features[i] for i in range(len(docking_features)) if valid_mask[i]]
+X = X[:, valid_mask]
+
+log(f"\n✓ After filtering:")
+log(f"  Features: {len(docking_features)}")
+log(f"  Matrix shape: {X.shape}")
+
+# Now impute the remaining valid features
+if np.isnan(X).any():
     log(f"\n⚠️  Imputing missing values with median...")
     imputer = SimpleImputer(strategy='median')
     X = imputer.fit_transform(X)
     log(f"✓ Imputation complete")
+
+log(f"\n✓ After filtering:")
+log(f"  Features: {len(docking_features)}")
+log(f"  Matrix shape: {X.shape}")
 
 # Handle infinite values
 inf_mask = np.isinf(X)
