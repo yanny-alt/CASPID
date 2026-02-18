@@ -1,0 +1,4 @@
+feature,shap_importance
+centroid_distance,0.027514508
+min_dist_to_protein,0.021350352
+hinge_MET769_min_dist,0.008770299
