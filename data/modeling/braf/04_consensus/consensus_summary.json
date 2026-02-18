@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-02-17T20:17:04.848356",
+  "total_features": 92,
+  "boruta_selected": 0,
+  "mi_selected": 50,
+  "shap_selected": 3,
+  "overlaps": {
+    "boruta_mi": 0,
+    "boruta_shap": 0,
+    "mi_shap": 3,
+    "all_three": 0
+  },
+  "feature_sets": {
+    "set_a_strict": {
+      "n_features": 3,
+      "description": "Features selected by \u22652 methods"
+    },
+    "set_b_expanded": {
+      "n_features": 30,
+      "description": "Top features from all methods combined"
+    },
+    "set_c_biological": {
+      "n_features": 30,
+      "description": "Set B + key binding geometry features"
+    }
+  },
+  "key_binding_features": [
+    "hinge_MET769_min_dist",
+    "hinge_MET769_contacts",
+    "dfg_PHE832_min_dist",
+    "dfg_PHE832_mean_dist",
+    "p_loop_GLY695_min_dist",
+    "p_loop_GLY695_mean_dist",
+    "c_helix_GLU738_min_dist",
+    "c_helix_GLU738_mean_dist"
+  ]
+}
