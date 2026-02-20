@@ -23,12 +23,12 @@ print("="*70)
 compounds = pd.read_csv(DATA_RAW / "GDSC" / "compound_annotations.csv")
 print(f"\nTotal compounds: {len(compounds)}")
 
-# Focus on EGFR and BRAF drugs
+# Focus on EGFR, BRAF, and MEK drugs
 target_compounds = compounds[
-    compounds['TARGET'].str.contains('EGFR|BRAF', na=False, case=False, regex=True)
+    compounds['TARGET'].str.contains('EGFR|BRAF|MEK', na=False, case=False, regex=True)
 ].copy()
 
-print(f"EGFR/BRAF compounds: {len(target_compounds)}")
+print(f"EGFR/BRAF/MEK compounds: {len(target_compounds)}")
 
 def get_smiles_from_chembl(drug_name):
     """
@@ -155,6 +155,7 @@ print("="*70)
 successful = results_df[results_df['Success']]
 print(f"\nEGFR compounds with SMILES: {(successful['TARGET'].str.contains('EGFR', case=False)).sum()}")
 print(f"BRAF compounds with SMILES: {(successful['TARGET'].str.contains('BRAF', case=False)).sum()}")
+print(f"MEK compounds with SMILES: {(successful['TARGET'].str.contains('MEK', case=False)).sum()}")
 
 print("\nExamples:")
 print(successful[['DRUG_NAME', 'TARGET', 'Source']].head(10))
