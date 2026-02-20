@@ -22,5 +22,17 @@
     "exhaustiveness": 32,
     "num_modes": 20,
     "description": "BRAF V600E with vemurafenib"
+  },
+  "MEK1": {
+    "receptor_file": "/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/mek1_prepared.pdb",
+    "center_x": -4.64,
+    "center_y": 62.39,
+    "center_z": 33.77,
+    "size_x": 25.0,
+    "size_y": 25.0,
+    "size_z": 25.0,
+    "exhaustiveness": 32,
+    "num_modes": 20,
+    "description": "MEK1 with U0126"
   }
 }
