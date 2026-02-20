@@ -9,7 +9,7 @@ import numpy as np
 import os
 from pathlib import Path
 
-
+# Set paths - UPDATED FOR YOUR DIRECTORY
 PROJECT_ROOT = Path("/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID")
 DATA_RAW = PROJECT_ROOT / "DATA"
 
@@ -123,6 +123,14 @@ else:
         print(f"\nBRAF-targeting drugs: {len(braf_drugs)}")
         print("Examples:")
         print(braf_drugs[['DRUG_NAME', target_col]].head())
+        
+        # Check MEK drugs
+        mek_drugs = compounds[
+            compounds[target_col].str.contains('MEK', na=False, case=False)
+        ]
+        print(f"\nMEK-targeting drugs: {len(mek_drugs)}")
+        print("Examples:")
+        print(mek_drugs[['DRUG_NAME', target_col]].head())
     else:
         print(f"\n⚠️  Could not find target column")
 
@@ -275,12 +283,14 @@ if compounds is not None:
 if len(exact_matches) < 600:
     issues.append(f"⚠️  Only {len(exact_matches)} exact cell line matches (need ≥600)")
 
-# Check 3: EGFR/BRAF drugs
+# Check 3: EGFR/BRAF/MEK drugs
 if compounds is not None and target_col:
     if len(egfr_drugs) < 10:
         issues.append(f"⚠️  Only {len(egfr_drugs)} EGFR drugs found (expected 15-25)")
     if len(braf_drugs) < 5:
         issues.append(f"⚠️  Only {len(braf_drugs)} BRAF drugs found (expected 10-20)")
+    if len(mek_drugs) < 5:  # ADD THIS LINE
+        issues.append(f"⚠️  Only {len(mek_drugs)} MEK drugs found (expected 5-10)")
 
 # Check 4: Missing data
 if missing_ic50 > len(gdsc_response) * 0.1:
