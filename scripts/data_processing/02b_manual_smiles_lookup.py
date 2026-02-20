@@ -138,7 +138,7 @@ total = len(compounds_df)
 success = compounds_df['Success'].sum()
 excluded = sum(1 for u in updates if u.get('Exclude'))
 
-print(f"\nTotal EGFR/BRAF compounds: {total}")
+print(f"\nTotal EGFR/BRAF/MEK compounds: {total}")
 print(f"✓ With SMILES: {success} ({success/total*100:.1f}%)")
 print(f"✗ Excluded (antibodies, etc.): {excluded}")
 print(f"? Still missing: {total - success - excluded}")
@@ -157,9 +157,11 @@ print(f"  → {len(dockable)} compounds ready for docking")
 # Breakdown by target
 egfr_count = (dockable['TARGET'].str.contains('EGFR', case=False)).sum()
 braf_count = (dockable['TARGET'].str.contains('BRAF', case=False)).sum()
+mek_count = (dockable['TARGET'].str.contains('MEK', case=False)).sum()
 
 print(f"\n  EGFR inhibitors: {egfr_count}")
 print(f"  BRAF inhibitors: {braf_count}")
+print(f"  MEK inhibitors: {mek_count}")
 
 print("\n" + "="*70)
 print("READY FOR NEXT STEP")
