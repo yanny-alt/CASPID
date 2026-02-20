@@ -36,6 +36,11 @@ PROTEINS = {
         'pdb_file': '4mne.pdb',
         'chain': 'A',
         'description': 'BRAF V600E with vemurafenib',
+    },
+    'MEK1': {
+        'pdb_file': '3eqh.pdb',
+        'chain': 'A',                    
+        'description': 'MEK1 with U0126',
     }
 }
 
@@ -43,7 +48,8 @@ PROTEINS = {
 # You can refine these in ChimeraX if needed
 BINDING_CENTERS = {
     'EGFR': {'x': 29.0, 'y': 6.3, 'z': 54.2},
-    'BRAF': {'x': 6.6, 'y': -16.9, 'z': -35.7}
+    'BRAF': {'x': 6.6, 'y': -16.9, 'z': -35.7},
+    'MEK1': {'x': -4.64, 'y': 62.39, 'z': 33.77}
 }
 
 print("\n" + "="*70)
