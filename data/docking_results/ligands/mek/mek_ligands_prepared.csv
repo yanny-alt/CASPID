@@ -1,0 +1,5 @@
+drug_name,pdbqt_file,smiles
+Refametinib,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/LIGANDS/refametinib.pdbqt,COc1cc(F)c(F)c(Nc2ccc(I)cc2F)c1NS(=O)(=O)C1(C[C@H](O)CO)CC1
+PD0325901,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/LIGANDS/pd0325901.pdbqt,O=C(NOC[C@H](O)CO)c1ccc(F)c(F)c1Nc1ccc(I)cc1F
+Selumetinib,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/LIGANDS/selumetinib.pdbqt,Cn1cnc2c(F)c(Nc3ccc(Br)cc3Cl)c(C(=O)NOCCO)cc21.O=S(=O)(O)O
+Trametinib,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/LIGANDS/trametinib.pdbqt,CC(=O)Nc1cccc(-n2c(=O)n(C3CC3)c(=O)c3c(Nc4ccc(I)cc4F)n(C)c(=O)c(C)c32)c1
