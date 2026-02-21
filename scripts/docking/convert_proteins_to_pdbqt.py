@@ -11,7 +11,8 @@ DOCKING_DIR = Path("/Users/favourigwezeke/Personal_System/Research/Dr. Charles N
 
 proteins = {
     'egfr': 'egfr_prepared.pdb',
-    'braf': 'braf_prepared.pdb'
+    'braf': 'braf_prepared.pdb',
+    'mek1': 'mek1_prepared.pdb'
 }
 
 print("="*70)
