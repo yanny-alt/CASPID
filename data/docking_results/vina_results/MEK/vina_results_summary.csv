@@ -1,0 +1,15 @@
+job_id,protein,ligand,status,reason,output,log,affinity_kcal_mol,time_seconds
+EGFR_afatinib,EGFR,afatinib,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/EGFR/afatinib_docked.pdbqt,,,
+EGFR_azd3759,EGFR,azd3759,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/EGFR/azd3759_docked.pdbqt,,,
+EGFR_erlotinib,EGFR,erlotinib,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/EGFR/erlotinib_docked.pdbqt,,,
+EGFR_gefitinib,EGFR,gefitinib,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/EGFR/gefitinib_docked.pdbqt,,,
+EGFR_lapatinib,EGFR,lapatinib,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/EGFR/lapatinib_docked.pdbqt,,,
+EGFR_osimertinib,EGFR,osimertinib,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/EGFR/osimertinib_docked.pdbqt,,,
+EGFR_sapitinib,EGFR,sapitinib,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/EGFR/sapitinib_docked.pdbqt,,,
+BRAF_dabrafenib,BRAF,dabrafenib,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/BRAF/dabrafenib_docked.pdbqt,,,
+BRAF_plx-4720,BRAF,plx-4720,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/BRAF/plx-4720_docked.pdbqt,,,
+BRAF_sb590885,BRAF,sb590885,SKIPPED,Already exists,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/BRAF/sb590885_docked.pdbqt,,,
+MEK1_pd0325901,MEK1,pd0325901,SUCCESS,,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/MEK1/pd0325901_docked.pdbqt,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/MEK1/pd0325901_vina.log,-8.517,105.6
+MEK1_refametinib,MEK1,refametinib,SUCCESS,,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/MEK1/refametinib_docked.pdbqt,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/MEK1/refametinib_vina.log,-7.942,147.4
+MEK1_selumetinib,MEK1,selumetinib,SUCCESS,,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/MEK1/selumetinib_docked.pdbqt,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/MEK1/selumetinib_vina.log,-7.726,72.4
+MEK1_trametinib,MEK1,trametinib,SUCCESS,,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/MEK1/trametinib_docked.pdbqt,/Users/favourigwezeke/Personal_System/Research/Dr. Charles Nnadi/CASPID/DATA/DOCKING/VINA_RESULTS/MEK1/trametinib_vina.log,-9.081,126.1
