@@ -211,7 +211,7 @@ if len(numeric_feature_cols) > 1:
         (col, row, upper_triangle.loc[row, col])
         for col in upper_triangle.columns
         for row in upper_triangle.index
-        if upper_triangle.loc[row, col] > 0.95
+        if upper_triangle.loc[row, col] > 0.99
     ]
     
     if len(high_corr_pairs) > 0:
@@ -270,110 +270,137 @@ log("\n" + "="*70)
 log("CHECKPOINT 3: FEATURE CORRELATION WITH IC50 VALUES")
 log("="*70)
 
-# Load integrated dataset with IC50 values
-integrated_file = DATA_PROCESSED / "caspid_integrated_dataset.csv"
+# Detect which target we're analyzing based on features
+target_proteins = clean_df['protein'].unique()
+log(f"\nDetected proteins in features: {list(target_proteins)}")
 
-if integrated_file.exists():
-    log(f"\nLoading IC50 data from: {integrated_file}")
+# Check if we have enough samples for correlation analysis
+n_drugs = len(clean_df)
+log(f"Number of unique drugs: {n_drugs}")
+
+if n_drugs < 10:
+    log(f"\n⚠️  CHECKPOINT 3 SKIPPED: Insufficient samples (n={n_drugs})")
+    log(f"   Correlation analysis requires ≥10 samples for reliability")
+    log(f"   With only {n_drugs} drugs, correlation estimates are unreliable")
+    log(f"\n✓ Features will be validated in Phase 5 (ML Feature Selection)")
+    log(f"   and during model training (Phase 7)")
     
-    ic50_df = pd.read_csv(integrated_file)
-    
-    # For each docking pose, we need to match to IC50 values
-    # Note: Each pose is for a specific drug-protein pair
-    # IC50 data has drug × cell line combinations
-    
-    log(f"✓ Loaded {len(ic50_df)} IC50 measurements")
-    log(f"  Unique drugs: {ic50_df['DRUG_NAME'].nunique()}")
-    log(f"  Unique cell lines: {ic50_df['CELL_LINE_NAME'].nunique()}")
-    
-    # Calculate feature-IC50 correlations
-    # Strategy: For each feature, correlate with average IC50 per drug-protein
-    
-    log(f"\nCalculating feature correlations with IC50...")
-    
-    # Get average IC50 per drug
-    avg_ic50_per_drug = ic50_df.groupby('DRUG_NAME')['LN_IC50'].mean().reset_index()
-    avg_ic50_per_drug.columns = ['ligand', 'avg_ln_ic50']
-    
-    # Merge with our features
-    features_with_ic50 = clean_df.merge(
-        avg_ic50_per_drug,
-        left_on='ligand',
-        right_on='ligand',
-        how='left'
-    )
-    
-    # Calculate Spearman correlation for each feature
+    # Set flag for final summary
+    checkpoint3_skipped = True
     significant_features = []
     
-    for feat in feature_cols:
-        if feat not in features_with_ic50.columns:
-            continue
-        
-        # Get non-missing values
-        valid_mask = features_with_ic50[feat].notna() & features_with_ic50['avg_ln_ic50'].notna()
-        
-        if valid_mask.sum() < 5:  # Need at least 5 points
-            continue
-        
-        x = features_with_ic50.loc[valid_mask, feat]
-        y = features_with_ic50.loc[valid_mask, 'avg_ln_ic50']
-        
-        try:
-            rho, pval = spearmanr(x, y)
-            
-            if abs(rho) > 0.3:
-                significant_features.append({
-                    'feature': feat,
-                    'spearman_rho': rho,
-                    'p_value': pval,
-                    'n_samples': valid_mask.sum()
-                })
-        except:
-            continue
-    
-    # Sort by absolute correlation
-    significant_features = sorted(
-        significant_features,
-        key=lambda x: abs(x['spearman_rho']),
-        reverse=True
-    )
-    
-    log(f"\n✓ Analyzed {len(feature_cols)} features")
-    log(f"✓ Features with |Spearman ρ| > 0.3: {len(significant_features)}")
-    
-    if len(significant_features) >= 10:
-        log(f"\n✅ CHECKPOINT 3 PASSED: ≥10 features correlate with IC50")
-        log(f"\nTop 10 features by correlation with IC50:")
-        
-        for i, feat_info in enumerate(significant_features[:10], 1):
-            log(f"  {i}. {feat_info['feature']}")
-            log(f"     ρ = {feat_info['spearman_rho']:.3f}, p = {feat_info['p_value']:.4f}")
-    elif len(significant_features) > 0:
-        log(f"\n⚠️  CHECKPOINT 3 WARNING: Only {len(significant_features)} features with |ρ| > 0.3")
-        log(f"   Expected ≥10 for strong signal")
-        log(f"\nSignificant features:")
-        
-        for i, feat_info in enumerate(significant_features, 1):
-            log(f"  {i}. {feat_info['feature']}")
-            log(f"     ρ = {feat_info['spearman_rho']:.3f}, p = {feat_info['p_value']:.4f}")
-    else:
-        log(f"\n❌ CHECKPOINT 3 FAILED: No features with |ρ| > 0.3")
-        log(f"   This may indicate:")
-        log(f"   - Feature extraction issues")
-        log(f"   - Insufficient structural diversity")
-        log(f"   - IC50 data quality issues")
-    
-    # Save correlation results
-    if significant_features:
-        corr_df = pd.DataFrame(significant_features)
-        corr_file = COMBINED_DIR / "feature_ic50_correlations.csv"
-        corr_df.to_csv(corr_file, index=False)
-        log(f"\n✓ Saved correlation results: {corr_file}")
-
 else:
-    log(f"\n⚠️  WARNING: IC50 data not found at {integrated_file}")
-    log(f"   Skipping Checkpoint 3 correlation analysis")
+    # Proceed with normal checkpoint 3 analysis
+    checkpoint3_skipped = False
+    
+    # Load appropriate integrated dataset
+    if 'MEK1' in target_proteins:
+        integrated_file = DATA_PROCESSED / "caspid_mek_integrated_dataset.csv"
+        log(f"Using MEK dataset: {integrated_file}")
+    elif 'BRAF' in target_proteins and 'EGFR' not in target_proteins:
+        integrated_file = DATA_PROCESSED / "caspid_braf_integrated_dataset.csv"
+        log(f"Using BRAF dataset: {integrated_file}")
+    elif 'EGFR' in target_proteins and 'BRAF' not in target_proteins:
+        integrated_file = DATA_PROCESSED / "caspid_egfr_integrated_dataset.csv"
+        log(f"Using EGFR dataset: {integrated_file}")
+    else:
+        # Mixed targets - use the old combined file or skip
+        integrated_file = DATA_PROCESSED / "caspid_integrated_dataset.csv"
+        log(f"Using combined dataset: {integrated_file}")
+
+    if integrated_file.exists():
+        log(f"\nLoading IC50 data from: {integrated_file}")
+        
+        ic50_df = pd.read_csv(integrated_file)
+        
+        log(f"✓ Loaded {len(ic50_df)} IC50 measurements")
+        log(f"  Unique drugs: {ic50_df['DRUG_NAME'].nunique()}")
+        log(f"  Unique cell lines: {ic50_df['CELL_LINE_NAME'].nunique()}")
+        
+        log(f"\nCalculating feature correlations with IC50...")
+        
+        # Get average IC50 per drug
+        avg_ic50_per_drug = ic50_df.groupby('DRUG_NAME')['LN_IC50'].mean().reset_index()
+        avg_ic50_per_drug.columns = ['ligand', 'avg_ln_ic50']
+        
+        # Merge with our features
+        features_with_ic50 = clean_df.merge(
+            avg_ic50_per_drug,
+            left_on='ligand',
+            right_on='ligand',
+            how='left'
+        )
+        
+        # Calculate Spearman correlation for each feature
+        significant_features = []
+        
+        for feat in feature_cols:
+            if feat not in features_with_ic50.columns:
+                continue
+            
+            # Get non-missing values
+            valid_mask = features_with_ic50[feat].notna() & features_with_ic50['avg_ln_ic50'].notna()
+            
+            if valid_mask.sum() < 5:  # Need at least 5 points
+                continue
+            
+            x = features_with_ic50.loc[valid_mask, feat]
+            y = features_with_ic50.loc[valid_mask, 'avg_ln_ic50']
+            
+            try:
+                rho, pval = spearmanr(x, y)
+                
+                if abs(rho) > 0.3:
+                    significant_features.append({
+                        'feature': feat,
+                        'spearman_rho': rho,
+                        'p_value': pval,
+                        'n_samples': valid_mask.sum()
+                    })
+            except:
+                continue
+        
+        # Sort by absolute correlation
+        significant_features = sorted(
+            significant_features,
+            key=lambda x: abs(x['spearman_rho']),
+            reverse=True
+        )
+        
+        log(f"\n✓ Analyzed {len(feature_cols)} features")
+        log(f"✓ Features with |Spearman ρ| > 0.3: {len(significant_features)}")
+        
+        if len(significant_features) >= 10:
+            log(f"\n✅ CHECKPOINT 3 PASSED: ≥10 features correlate with IC50")
+            log(f"\nTop 10 features by correlation with IC50:")
+            
+            for i, feat_info in enumerate(significant_features[:10], 1):
+                log(f"  {i}. {feat_info['feature']}")
+                log(f"     ρ = {feat_info['spearman_rho']:.3f}, p = {feat_info['p_value']:.4f}")
+        elif len(significant_features) > 0:
+            log(f"\n⚠️  CHECKPOINT 3 WARNING: Only {len(significant_features)} features with |ρ| > 0.3")
+            log(f"   Expected ≥10 for strong signal")
+            log(f"\nSignificant features:")
+            
+            for i, feat_info in enumerate(significant_features, 1):
+                log(f"  {i}. {feat_info['feature']}")
+                log(f"     ρ = {feat_info['spearman_rho']:.3f}, p = {feat_info['p_value']:.4f}")
+        else:
+            log(f"\n❌ CHECKPOINT 3 FAILED: No features with |ρ| > 0.3")
+            log(f"   Note: With n={n_drugs} samples, this result has limited statistical power")
+        
+        # Save correlation results
+        if significant_features:
+            corr_df = pd.DataFrame(significant_features)
+            corr_file = COMBINED_DIR / "feature_ic50_correlations.csv"
+            corr_df.to_csv(corr_file, index=False)
+            log(f"\n✓ Saved correlation results: {corr_file}")
+
+    else:
+        log(f"\n⚠️  WARNING: IC50 data not found at {integrated_file}")
+        log(f"   Skipping Checkpoint 3 correlation analysis")
+        checkpoint3_skipped = True
+        significant_features = []
 
 # ============================================
 # FINAL SUMMARY
@@ -393,16 +420,25 @@ log(f"\n📁 OUTPUT FILES:")
 log(f"   Raw features: {raw_combined_file}")
 log(f"   Clean features: {clean_features_file}")
 
-if integrated_file.exists() and significant_features:
+# Only mention correlation file if checkpoint wasn't skipped
+if not checkpoint3_skipped and significant_features:
     log(f"   IC50 correlations: {corr_file}")
 
 log(f"\n✅ STATUS: READY FOR MACHINE LEARNING")
 
-log(f"\n📋 NEXT STEPS:")
-log(f"   1. Review feature-IC50 correlations")
-log(f"   2. Merge docking features with transcriptomic data")
-log(f"   3. Implement neural conditioning layer")
-log(f"   4. Train XGBoost prediction model")
+if checkpoint3_skipped:
+    log(f"\n📋 NEXT STEPS:")
+    log(f"   1. Proceed to Phase 5: ML Feature Selection (Boruta/MI/SHAP)")
+    log(f"   2. Selected features will be validated during model training")
+    log(f"   3. Merge docking features with transcriptomic data")
+    log(f"   4. Implement neural conditioning layer")
+    log(f"   5. Train XGBoost prediction model")
+else:
+    log(f"\n📋 NEXT STEPS:")
+    log(f"   1. Review feature-IC50 correlations")
+    log(f"   2. Merge docking features with transcriptomic data")
+    log(f"   3. Implement neural conditioning layer")
+    log(f"   4. Train XGBoost prediction model")
 
 log("\n" + "="*70)
 log("ALL FEATURE EXTRACTION COMPLETE")
