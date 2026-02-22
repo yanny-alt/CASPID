@@ -1,0 +1,3 @@
+dfg_GLY210_min_dist
+pca_variance_pc1
+allosteric_TYR130_min_dist

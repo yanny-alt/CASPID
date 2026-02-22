@@ -1,0 +1,4 @@
+feature,shap_importance
+dfg_GLY210_min_dist,0.76304865
+pca_variance_pc1,0.30263045
+allosteric_TYR130_min_dist,0.043283183
