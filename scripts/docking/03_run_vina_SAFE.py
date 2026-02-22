@@ -292,38 +292,46 @@ log(f"✓ Total jobs: {len(jobs)}")
 log(f"  = {len(config)} proteins × {len(ligand_files)} ligands")
 
 # ============================================
-# TEST MODE - RUN ONE JOB FIRST
+# FILTER LIGANDS BY TARGET
 # ============================================
 
-log("\n6. TEST MODE - Running one job first...")
-log("   This ensures everything works before running all jobs")
+log("\n5. Filtering ligands by target...")
 
-test_job = jobs[0]
-log(f"\n   Test job: {test_job[0]} + {test_job[1].name}")
+# Define which ligands belong to which protein
+TARGET_LIGANDS = {
+    'EGFR': ['afatinib', 'azd3759', 'erlotinib', 'gefitinib', 
+             'lapatinib', 'osimertinib', 'sapitinib'],
+    'BRAF': ['dabrafenib', 'plx_4720', 'sb590885'],
+    'MEK1': ['pd0325901', 'refametinib', 'selumetinib', 'trametinib']
+}
 
-test_result = run_vina_docking(test_job)
+# Prepare target-specific jobs
+jobs = []
+for protein_name, protein_config in config.items():
+    # Get ligands for this protein
+    target_ligands = TARGET_LIGANDS.get(protein_name, [])
+    
+    matched_ligands = []
+    for ligand_file in ligand_files:
+        ligand_name = ligand_file.stem.lower().replace('-', '_')
+        
+        # Only dock if ligand belongs to this protein
+        if ligand_name in [l.lower().replace('-', '_') for l in target_ligands]:
+            jobs.append((protein_name, ligand_file, protein_config))
+            matched_ligands.append(ligand_name)
+    
+    log(f"  {protein_name}: {len(matched_ligands)} ligands")
+    for lig in matched_ligands:
+        log(f"    - {lig}")
 
-log(f"\n   Test result: {test_result['status']}")
-
-if test_result['status'] == 'SUCCESS':
-    log(f"   ✓ Affinity: {test_result['affinity_kcal_mol']} kcal/mol")
-    log(f"   ✓ Time: {test_result['time_seconds']} seconds")
-    log(f"\n   ✅ TEST PASSED - Ready for full run")
-elif test_result['status'] == 'SKIPPED':
-    log(f"   - Test job already completed (skipped)")
-    log(f"\n   ✅ Ready for full run")
-else:
-    log(f"   ✗ FAILED: {test_result.get('reason', 'Unknown error')}")
-    if 'stderr' in test_result:
-        log(f"   Error details: {test_result['stderr']}")
-    log(f"\n   ❌ FIX ERRORS BEFORE PROCEEDING")
-    exit(1)
+log(f"\n✓ Total jobs: {len(jobs)}")
+log(f"  (target-specific filtering applied)")
 
 # ============================================
 # PARALLEL EXECUTION SETUP
 # ============================================
 
-log("\n7. Calculating parallelization strategy...")
+log("\n6. Calculating parallelization strategy...")
 
 # Calculate optimal number of parallel jobs
 total_cpus = cpu_count()
@@ -349,14 +357,18 @@ log(f"   (assuming {avg_time_per_job} min per job average)")
 # ============================================
 
 print(f"\n{'='*70}")
-print(f"READY TO START FULL DOCKING RUN")
+print(f"READY TO START DOCKING")
 print(f"{'='*70}")
 print(f"\n  Jobs to run: {len(jobs)}")
 print(f"  Parallel jobs: {max_parallel}")
 print(f"  Estimated time: {total_time_estimate:.1f} hours")
 print(f"\n  Output directory: {RESULTS_DIR}")
+print(f"\n  Target-specific ligands:")
+for protein in config.keys():
+    protein_jobs = [j for j in jobs if j[0] == protein]
+    print(f"    {protein}: {len(protein_jobs)} ligands")
 
-response = input(f"\n  Continue with full run? (yes/no): ").strip().lower()
+response = input(f"\n  Continue? (yes/no): ").strip().lower()
 
 if response != 'yes':
     log("\n✗ Aborted by user")
@@ -368,7 +380,7 @@ if response != 'yes':
 # ============================================
 
 if __name__ == '__main__':
-    log("\n8. Starting full docking run...")
+    log("\n7. Starting full docking run...")
     log(f"   Time started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
     start_time = time.time()
@@ -391,7 +403,7 @@ if __name__ == '__main__':
     # ANALYZE RESULTS
     # ============================================
 
-    log("\n9. Analyzing results...")
+    log("\n8. Analyzing results...")
 
     # Count outcomes
     success = [r for r in results if r['status'] == 'SUCCESS']
@@ -416,7 +428,7 @@ if __name__ == '__main__':
     # SAVE RESULTS
     # ============================================
 
-    log("\n10. Saving results...")
+    log("\n9. Saving results...")
 
     # Save full results
     if results:
