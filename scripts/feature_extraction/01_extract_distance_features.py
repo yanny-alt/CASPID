@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """
 Distance-Based Feature Extraction for Molecular Docking Analysis
@@ -49,24 +50,32 @@ log("Starting distance-based feature extraction")
 
 # Key residues for kinase binding (from structural biology literature)
 KEY_RESIDUES_EGFR = {
-    'hinge': ['MET769', 'GLN767', 'LEU768'],
-    'gatekeeper': ['THR790'],
-    'dfg': ['ASP831', 'PHE832', 'GLY833'],
-    'p_loop': ['GLY695', 'GLY696', 'GLY697'],
-    'c_helix': ['GLU738', 'LYS721'],
-    'a_loop': ['ASP831', 'LEU834', 'ARG841'],
-    'selectivity': ['THR766', 'LEU764', 'VAL702']
+    'hinge': ['TRP793'],           # Verified: TRP A 793
+    'gatekeeper': ['LEU790'],      # Verified: LEU A 790 (wild-type, not T790M)
+    'catalytic_lys': ['LYS721'],   # Verified: LYS A 721
+    'dfg': ['ASP831', 'PHE832', 'GLY833'],  # Verified: DFG motif
+    'c_helix': ['GLU738'],         # Verified: GLU A 738
+    'p_loop': ['GLY695', 'GLY697'] # Verified: Glycine-rich loop
 }
 
 KEY_RESIDUES_BRAF = {
-    'hinge': ['CYS532', 'GLN530', 'ALA531'],
-    'gatekeeper': ['THR529'],
-    'dfg': ['ASP594', 'PHE595', 'GLY596'],
-    'p_loop': ['GLY463', 'GLY464', 'GLY466'],
-    'c_helix': ['GLU501', 'LYS483'],
-    'v600e': ['GLU600'],
-    'a_loop': ['ASP594', 'LEU597', 'TRP604'],
-    'selectivity': ['THR529', 'ILE527', 'VAL471']
+    'hinge': ['CYS532'],           # Verified: CYS B 532
+    'gatekeeper': ['THR529'],      # Verified: THR B 529
+    'catalytic_lys': ['LYS483'],   # From literature (need to verify)
+    'dfg': ['ASP594', 'PHE595', 'GLY596'],  # Verified: DFG motif
+    'c_helix': ['GLU501'],         # From literature (need to verify)
+    'v600e': ['GLU600']            # V600E mutation site
+}
+
+KEY_RESIDUES_MEK1 = {
+    'hinge': ['MET143'],           # Verified: MET A 143
+    'gatekeeper': ['ILE141'],      # Verified: ILE A 141
+    'catalytic_lys': ['LYS97'],    # From 3EQH literature
+    'dfg': ['ASP208', 'PHE209', 'GLY210'],  # Verified: DFG motif
+    'c_helix': ['GLU114'],         # From 3EQH literature
+    'a_loop': ['SER218', 'SER222'], # Activation loop phosphorylation sites
+    'allosteric': ['VAL127', 'TYR130', 'CYS207'], # Allosteric pocket
+    'p_loop': ['GLY77', 'GLY79', 'SER80']  # From 3EQH literature
 }
 
 def get_key_residues(protein):
@@ -74,6 +83,8 @@ def get_key_residues(protein):
         return KEY_RESIDUES_EGFR
     elif protein == 'BRAF':
         return KEY_RESIDUES_BRAF
+    elif protein == 'MEK1':
+        return KEY_RESIDUES_MEK1
     return {}
 
 def parse_pdbqt_protein(pdbqt_file):
@@ -85,8 +96,13 @@ def parse_pdbqt_protein(pdbqt_file):
                 if not (line.startswith('ATOM') or line.startswith('HETATM')):
                     continue
                 
+                chain = line[21:22].strip()  # Get chain ID
                 res_name = line[17:20].strip()
                 res_num = line[22:26].strip()
+                
+                # For BRAF, only use Chain B
+                if 'braf' in str(pdbqt_file).lower() and chain != 'B':
+                    continue
                 
                 try:
                     x, y, z = float(line[30:38]), float(line[38:46]), float(line[46:54])
@@ -233,7 +249,8 @@ if __name__ == '__main__':
     
     protein_files = {
         'EGFR': DOCKING_DIR / "egfr_prepared.pdbqt",
-        'BRAF': DOCKING_DIR / "braf_prepared.pdbqt"
+        'BRAF': DOCKING_DIR / "braf_prepared.pdbqt",
+        'MEK1': DOCKING_DIR / "mek1_prepared.pdbqt"
     }
     
     for protein, pfile in protein_files.items():
