@@ -1,0 +1,12 @@
+feature,importance
+molecular_compactness,0.33299384044272984
+pharmacophore_radius,0.18193333590943442
+vina_affinity,0.10750737225794184
+pca_variance_pc2,0.07046928498345224
+pca_variance_pc1,0.06414050239972033
+fraction_csp3,0.05611049409540848
+spatial_distribution_y,0.0544870712001031
+pharmacophore_triangular_area,0.03944801541028793
+hbond_max_distance,0.0338181111580645
+shape_complementarity,0.02967465742070015
+atom_density,0.02941731472215719

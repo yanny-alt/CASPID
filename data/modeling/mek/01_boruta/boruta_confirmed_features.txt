@@ -1,0 +1,11 @@
+pca_variance_pc1
+pca_variance_pc2
+shape_complementarity
+fraction_csp3
+vina_affinity
+hbond_max_distance
+pharmacophore_radius
+pharmacophore_triangular_area
+spatial_distribution_y
+molecular_compactness
+atom_density
