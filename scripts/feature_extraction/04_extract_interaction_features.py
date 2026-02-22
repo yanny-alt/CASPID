@@ -398,7 +398,8 @@ if __name__ == '__main__':
     # Prepare protein files
     protein_files = {
         'EGFR': DOCKING_DIR / "egfr_prepared.pdbqt",
-        'BRAF': DOCKING_DIR / "braf_prepared.pdbqt"
+        'BRAF': DOCKING_DIR / "braf_prepared.pdbqt",
+        'MEK1': DOCKING_DIR / "mek1_prepared.pdbqt"
     }
     
     for protein, pfile in protein_files.items():
