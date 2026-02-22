@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-02-22T18:50:51.310191",
+  "n_samples": 6568,
+  "n_features_total": 55,
+  "n_selected": 50,
+  "mi_mean": 0.2832991413549765,
+  "mi_max": 0.29903677407965024,
+  "mi_min": 0.1443351954111658,
+  "runtime_seconds": 1.943368,
+  "n_neighbors": 3
+}
