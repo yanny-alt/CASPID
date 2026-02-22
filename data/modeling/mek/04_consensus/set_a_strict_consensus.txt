@@ -1,0 +1,13 @@
+allosteric_TYR130_min_dist
+atom_density
+dfg_GLY210_min_dist
+fraction_csp3
+hbond_max_distance
+molecular_compactness
+pca_variance_pc1
+pca_variance_pc2
+pharmacophore_radius
+pharmacophore_triangular_area
+shape_complementarity
+spatial_distribution_y
+vina_affinity

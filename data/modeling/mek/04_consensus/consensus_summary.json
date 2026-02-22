@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-02-22T19:18:39.347495",
+  "total_features": 55,
+  "boruta_selected": 11,
+  "mi_selected": 50,
+  "shap_selected": 3,
+  "overlaps": {
+    "boruta_mi": 11,
+    "boruta_shap": 1,
+    "mi_shap": 3,
+    "all_three": 1
+  },
+  "feature_sets": {
+    "set_a_strict": {
+      "n_features": 13,
+      "description": "Features selected by \u22652 methods"
+    },
+    "set_b_expanded": {
+      "n_features": 33,
+      "description": "Top features from all methods combined"
+    },
+    "set_c_biological": {
+      "n_features": 34,
+      "description": "Set B + key binding geometry features"
+    }
+  },
+  "key_binding_features": [
+    "dfg_GLY210_min_dist",
+    "p_loop_GLY77_mean_dist",
+    "p_loop_GLY79_min_dist",
+    "a_loop_SER218_mean_dist",
+    "a_loop_SER218_min_dist",
+    "allosteric_TYR130_min_dist",
+    "allosteric_CYS207_mean_dist"
+  ]
+}
