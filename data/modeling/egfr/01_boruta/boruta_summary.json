@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-02-25T18:07:33.505108",
+  "n_samples": 5664,
+  "n_features_total": 80,
+  "n_confirmed": 9,
+  "n_tentative": 0,
+  "n_rejected": 71,
+  "runtime_seconds": 61.003485,
+  "alpha": 0.01,
+  "max_iter": 100
+}

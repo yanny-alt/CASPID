@@ -1,0 +1,10 @@
+feature,importance
+hydrophobic_min_distance,0.2634778113639325
+num_hbd_pharmacophore,0.16529272459539013
+hydrophobic_mean_distance,0.14097401938855766
+hbond_max_distance,0.13823457229631209
+p_loop_GLY697_mean_dist,0.1328917526652699
+num_hba_pharmacophore,0.06959569360258629
+num_heavy_atoms,0.045567097434227544
+spatial_distribution_z,0.03085358323891407
+gatekeeper_LEU790_mean_dist,0.013112745414809859

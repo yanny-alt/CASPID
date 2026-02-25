@@ -1,0 +1,9 @@
+gatekeeper_LEU790_mean_dist
+p_loop_GLY697_mean_dist
+num_heavy_atoms
+hbond_max_distance
+hydrophobic_min_distance
+hydrophobic_mean_distance
+num_hbd_pharmacophore
+num_hba_pharmacophore
+spatial_distribution_z
