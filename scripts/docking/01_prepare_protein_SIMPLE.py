@@ -47,7 +47,7 @@ PROTEINS = {
 # Approximate binding site centers (from literature/visualization)
 # You can refine these in ChimeraX if needed
 BINDING_CENTERS = {
-    'EGFR': {'x': 29.0, 'y': 6.3, 'z': 54.2},
+    'EGFR': {'x': 21.86, 'y': 0.26, 'z': 52.76},
     'BRAF': {'x': 6.6, 'y': -16.9, 'z': -35.7},
     'MEK1': {'x': -4.64, 'y': 62.39, 'z': 33.77}
 }
