@@ -1,0 +1,5 @@
+feature,shap_importance
+gatekeeper_LEU790_mean_dist,0.38255626
+catalytic_lys_LYS721_min_dist,0.13108847
+hbond_max_distance,0.12362635
+hinge_TRP793_min_dist,0.09290144
