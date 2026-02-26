@@ -1,0 +1,118 @@
+{
+  "timestamp": "2026-02-26T15:40:39.188658",
+  "total_tested": 400,
+  "significant_fdr": 393,
+  "base_r2": 0.9620453941232907,
+  "top_interactions": [
+    {
+      "structural_feature": "gatekeeper_LEU790_min_dist",
+      "transcriptomic_feature": "CALU (813)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9669770693352414,
+      "r2_improvement": 0.0049316752119507035,
+      "f_statistic": 824.5112804066432,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_mean_distance",
+      "transcriptomic_feature": "DAPP1 (27071)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9628418993539395,
+      "r2_improvement": 0.0007965052306487808,
+      "f_statistic": 118.34580621596237,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_mean_distance",
+      "transcriptomic_feature": "CALU (813)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9649408095042096,
+      "r2_improvement": 0.0028954153809188643,
+      "f_statistic": 455.9599948542029,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_mean_distance",
+      "transcriptomic_feature": "DYNLRB1 (83658)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9629615838737187,
+      "r2_improvement": 0.0009161897504279537,
+      "f_statistic": 136.56857234031804,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_mean_distance",
+      "transcriptomic_feature": "SMPD1 (6609)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9657704788083771,
+      "r2_improvement": 0.003725084685086366,
+      "f_statistic": 600.8320254095485,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_mean_distance",
+      "transcriptomic_feature": "TLCD5 (219902)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9660093965125149,
+      "r2_improvement": 0.00396400238922423,
+      "f_statistic": 643.8619778835264,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_mean_distance",
+      "transcriptomic_feature": "ETV1 (2115)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9678601608971501,
+      "r2_improvement": 0.005814766773859392,
+      "f_statistic": 998.863972397137,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_mean_distance",
+      "transcriptomic_feature": "POMGNT1 (55624)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9651189513512015,
+      "r2_improvement": 0.003073557227910806,
+      "f_statistic": 486.48507176919975,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_min_distance",
+      "transcriptomic_feature": "STX2 (2054)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9655064567867861,
+      "r2_improvement": 0.00346106266349544,
+      "f_statistic": 553.9740248499055,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    },
+    {
+      "structural_feature": "hbond_min_distance",
+      "transcriptomic_feature": "PHC2 (1912)",
+      "base_r2": 0.9620453941232907,
+      "interaction_r2": 0.9662089832161361,
+      "r2_improvement": 0.004163589092845421,
+      "f_statistic": 680.2747466473467,
+      "p_value": 1.1102230246251565e-16,
+      "p_adjusted": 1.1445598192011924e-16,
+      "significant_fdr": true
+    }
+  ]
+}
