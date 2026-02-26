@@ -1,0 +1,93 @@
+{
+  "timestamp": "2026-02-26T06:49:42.079298",
+  "n_samples": 5664,
+  "n_structural_features": 37,
+  "n_transcriptomic_features": 105,
+  "cv_folds": 5,
+  "cv_repeats": 10,
+  "total_runs_per_model": 50,
+  "xgb_params": {
+    "n_estimators": 200,
+    "max_depth": 6,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_alpha": 0.1,
+    "reg_lambda": 1.0,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "models": {
+    "structure_only": {
+      "model": "Structure-only",
+      "n_runs": 50,
+      "test_r2_mean": 0.23967726980948684,
+      "test_r2_std": 0.02570115794789222,
+      "test_r2_min": 0.18104403793552393,
+      "test_r2_max": 0.28289420816045063,
+      "test_rmse_mean": 1.4375107920875487,
+      "test_rmse_std": 0.03889813707217884,
+      "test_mae_mean": 1.0847719427759785,
+      "test_mae_std": 0.028534790871541836,
+      "test_spearman_mean": 0.49005212794253855,
+      "test_spearman_std": 0.028297265386637464,
+      "train_r2_mean": 0.24163427833930784,
+      "train_r2_std": 0.006479303239234689
+    },
+    "transcriptomics_only": {
+      "model": "Transcriptomics-only",
+      "n_runs": 50,
+      "test_r2_mean": 0.42604655503304634,
+      "test_r2_std": 0.02586433431537507,
+      "test_r2_min": 0.341808660445612,
+      "test_r2_max": 0.46296735704057834,
+      "test_rmse_mean": 1.2484337667659529,
+      "test_rmse_std": 0.021661586632646345,
+      "test_mae_mean": 1.0176480509195114,
+      "test_mae_std": 0.018668290388257264,
+      "test_spearman_mean": 0.6016444286544868,
+      "test_spearman_std": 0.018650909715050866,
+      "train_r2_mean": 0.5798408984184903,
+      "train_r2_std": 0.004982911167155082
+    },
+    "concatenation": {
+      "model": "Concatenation",
+      "n_runs": 50,
+      "test_r2_mean": 0.8062020930391346,
+      "test_r2_std": 0.00993499570337895,
+      "test_r2_min": 0.7794272581740286,
+      "test_r2_max": 0.8252086909007661,
+      "test_rmse_mean": 0.7254284003563946,
+      "test_rmse_std": 0.01767336148178764,
+      "test_mae_mean": 0.5568862807808337,
+      "test_mae_std": 0.012308257833494568,
+      "test_spearman_mean": 0.8840713968237089,
+      "test_spearman_std": 0.006758094486250015,
+      "train_r2_mean": 0.9230146011156958,
+      "train_r2_std": 0.0020203260572412003
+    }
+  },
+  "statistical_tests": [
+    {
+      "comparison": "Transcriptomics vs Structure",
+      "t_statistic": 30.72096695092392,
+      "p_value": 1.1274698458264253e-33,
+      "mean_difference": 0.1863692852235595,
+      "significant": true
+    },
+    {
+      "comparison": "Concatenation vs Structure",
+      "t_statistic": 156.0152295004756,
+      "p_value": 9.511939040627813e-68,
+      "mean_difference": 0.5665248232296478,
+      "significant": true
+    },
+    {
+      "comparison": "Concatenation vs Transcriptomics",
+      "t_statistic": 127.15793642764093,
+      "p_value": 2.0894668264127086e-63,
+      "mean_difference": 0.38015553800608826,
+      "significant": true
+    }
+  ]
+}
