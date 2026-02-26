@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-02-26T16:25:00.594065",
+  "target": "EGFR",
+  "n_samples": 5664,
+  "n_structural_features": 37,
+  "n_transcriptomic_features": 105,
+  "n_interactions": 10,
+  "total_features": 152,
+  "optimal_params": {
+    "n_estimators": 200,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_alpha": 0.1,
+    "reg_lambda": 1.0
+  },
+  "performance": {
+    "full_dataset_r2": 0.9743671507833341,
+    "full_dataset_rmse": 0.26403858449683265,
+    "full_dataset_mae": 0.20034237717058673,
+    "cv_mean_r2": 0.8169972339200371,
+    "cv_std_r2": 0.013569631239766573,
+    "pearson_r": 0.9879286557098124,
+    "spearman_r": 0.9841685841056254
+  },
+  "top_structural_features": [
+    {
+      "feature": "hydrophobic_mean_distance",
+      "importance": 0.3570074141025543
+    },
+    {
+      "feature": "catalytic_lys_LYS721_mean_dist",
+      "importance": 0.04589226096868515
+    },
+    {
+      "feature": "hbond_max_distance",
+      "importance": 0.03961142152547836
+    },
+    {
+      "feature": "c_helix_GLU738_min_dist",
+      "importance": 0.0036448061000555754
+    },
+    {
+      "feature": "pharmacophore_triangular_area",
+      "importance": 0.003609659383073449
+    },
+    {
+      "feature": "hbond_mean_distance",
+      "importance": 0.0034053046256303787
+    },
+    {
+      "feature": "atom_density",
+      "importance": 0.0021865929011255503
+    },
+    {
+      "feature": "catalytic_lys_LYS721_min_dist",
+      "importance": 0.0021591167896986008
+    },
+    {
+      "feature": "dfg_GLY833_min_dist",
+      "importance": 0.0018602869240567088
+    },
+    {
+      "feature": "ligand_centroid_y",
+      "importance": 0.0016236763913184404
+    }
+  ],
+  "top_transcriptomic_features": [
+    {
+      "feature": "PHC2 (1912)",
+      "importance": 0.03147810325026512
+    },
+    {
+      "feature": "HABP4 (22927)",
+      "importance": 0.023944785818457603
+    },
+    {
+      "feature": "STX2 (2054)",
+      "importance": 0.023462215438485146
+    },
+    {
+      "feature": "TLCD5 (219902)",
+      "importance": 0.012760670855641365
+    },
+    {
+      "feature": "BACE1 (23621)",
+      "importance": 0.012216624803841114
+    },
+    {
+      "feature": "TNS2 (23371)",
+      "importance": 0.01193102728575468
+    },
+    {
+      "feature": "DAPP1 (27071)",
+      "importance": 0.011804834008216858
+    },
+    {
+      "feature": "C5orf24 (134553)",
+      "importance": 0.010328063741326332
+    },
+    {
+      "feature": "DLC1 (10395)",
+      "importance": 0.009149306453764439
+    },
+    {
+      "feature": "P3H1 (64175)",
+      "importance": 0.008453045971691608
+    }
+  ]
+}
