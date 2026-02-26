@@ -1,0 +1,8 @@
+catalytic_lys_LYS721_min_dist
+gatekeeper_LEU790_mean_dist
+hbond_max_distance
+hinge_TRP793_min_dist
+hydrophobic_mean_distance
+num_heavy_atoms
+p_loop_GLY697_mean_dist
+spatial_distribution_z
