@@ -2,7 +2,7 @@
 CASPID Full Model Training
 ===========================
 
-Trains complete CASPID framework using V3_BatchNorm conditioning architecture
+Trains complete CASPID framework using V4_Residual conditioning architecture
 (selected from architecture comparison) with XGBoost downstream predictor.
 
 Compares against baselines:
@@ -43,7 +43,7 @@ print("\n" + "="*70)
 print("LOADING DATA")
 print("="*70)
 
-df = pd.read_csv('/kaggle/input/caspid-conditioning-layer-training-data/caspid_conditioning_data.csv')
+df = pd.read_csv('/kaggle/input/datasets/yanny1/egfr-primary-validation-dataset/caspid_conditioning_data.csv')
 
 struct_cols = [c for c in df.columns if c.startswith('struct_')]
 trans_cols = [c for c in df.columns if c.startswith('trans_')]
@@ -61,7 +61,7 @@ print(f"Samples: {n_samples}")
 print(f"Structural features: {n_struct}")
 print(f"Transcriptomic features: {n_trans}")
 
-with open('/kaggle/input/caspid-conditioning-layer-training-data/baseline_performance.json') as f:
+with open('/kaggle/input/datasets/yanny1/egfr-primary-validation-dataset/baseline_performance.json') as f:
     baseline_info = json.load(f)
 
 baseline_concat_r2 = baseline_info['baseline_concatenation_r2']
@@ -81,10 +81,11 @@ print("\n" + "="*70)
 print("DEFINING CONDITIONING ARCHITECTURE")
 print("="*70)
 
-def build_v3_batchnorm(n_trans, n_struct):
+def build_v4_residual(n_trans, n_struct):
     """
-    V3_BatchNorm architecture (winner from architecture comparison).
-    Uses batch normalization for stable training.
+    V4_Residual architecture (winner from architecture comparison).
+    Uses residual connections: weights scaled to [0.5, 1.5] instead of [0, 2].
+    Prevents collapse to zero weights.
     """
     
     trans_input = layers.Input(shape=(n_trans,), name='trans_input')
@@ -92,12 +93,12 @@ def build_v3_batchnorm(n_trans, n_struct):
     
     # Conditioning network: transcriptomics -> weights
     h = layers.Dense(128, activation='relu')(trans_input)
-    h = layers.BatchNormalization()(h)
-    h = layers.Dropout(0.2)(h)
-    weights = layers.Dense(n_struct, activation='sigmoid', name='conditioning_weights')(h)
+    h = layers.Dropout(0.3)(h)
+    h = layers.Dense(n_struct)(h)
+    weights = layers.Activation('sigmoid', name='conditioning_weights')(h)
     
-    # Scale to [0, 2] range
-    weights_scaled = layers.Lambda(lambda x: x * 2.0, name='weight_scaling')(weights)
+    # CRITICAL: Scale to [0.5, 1.5] instead of [0, 2] (residual)
+    weights_scaled = layers.Lambda(lambda x: 0.5 + x, name='weight_scaling')(weights)
     
     # Apply conditioning to structural features
     conditioned = layers.Multiply(name='feature_conditioning')([struct_input, weights_scaled])
@@ -105,22 +106,21 @@ def build_v3_batchnorm(n_trans, n_struct):
     # Downstream prediction network
     combined = layers.Concatenate(name='feature_concatenation')([conditioned, trans_input])
     h = layers.Dense(256, activation='relu')(combined)
-    h = layers.BatchNormalization()(h)
-    h = layers.Dropout(0.2)(h)
+    h = layers.Dropout(0.3)(h)
     h = layers.Dense(128, activation='relu')(h)
     output = layers.Dense(1, name='output')(h)
     
     model = models.Model(
         inputs=[trans_input, struct_input],
         outputs=output,
-        name='V3_BatchNorm_Conditioning'
+        name='V4_Residual_Conditioning'
     )
     
     return model
 
-print("Architecture: V3_BatchNorm (128 -> BN -> Dropout -> weights)")
-print("Conditioning: Sigmoid weights scaled to [0, 2]")
-print("Downstream: 256 -> BN -> Dropout -> 128 -> output")
+print("Architecture: V4_Residual (128 -> Dropout -> Dense -> Sigmoid)")
+print("Conditioning: Sigmoid weights scaled to [0.5, 1.5] (residual)")
+print("Downstream: 256 -> Dropout -> 128 -> output")
 
 # ============================================
 # CONDITIONING WEIGHT EXTRACTION MODEL
@@ -132,10 +132,10 @@ def build_weight_extractor(n_trans, n_struct):
     trans_input = layers.Input(shape=(n_trans,), name='trans_input')
     
     h = layers.Dense(128, activation='relu')(trans_input)
-    h = layers.BatchNormalization()(h)
-    h = layers.Dropout(0.2)(h)
-    weights = layers.Dense(n_struct, activation='sigmoid', name='weights')(h)
-    weights_scaled = layers.Lambda(lambda x: x * 2.0)(weights)
+    h = layers.Dropout(0.3)(h)
+    h = layers.Dense(n_struct)(h)
+    weights = layers.Activation('sigmoid', name='weights')(h)
+    weights_scaled = layers.Lambda(lambda x: 0.5 + x)(weights)  # [0.5, 1.5]
     
     extractor = models.Model(inputs=trans_input, outputs=weights_scaled, name='WeightExtractor')
     
@@ -148,7 +148,7 @@ def build_weight_extractor(n_trans, n_struct):
 def train_conditioning_model(X_struct_train, X_trans_train, y_train,
                               X_struct_val, X_trans_val, y_val):
     """
-    Train V3_BatchNorm conditioning model.
+    Train V4_Residual conditioning model.
     Returns trained model and validation R2.
     """
     
@@ -160,7 +160,7 @@ def train_conditioning_model(X_struct_train, X_trans_train, y_train,
     X_trans_train_scaled = scaler_trans.fit_transform(X_trans_train)
     X_trans_val_scaled = scaler_trans.transform(X_trans_val)
     
-    model = build_v3_batchnorm(n_trans, n_struct)
+    model = build_v4_residual(n_trans, n_struct)
     
     model.compile(
         optimizer=keras.optimizers.Adam(learning_rate=0.001),
