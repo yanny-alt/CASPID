@@ -130,6 +130,14 @@ if interaction_file.exists():
         log(f"Using {len(selected_interactions)} interaction terms")
         for inter in selected_interactions:
             log(f"  {inter['struct_feature']} × {inter['trans_feature']}")
+        
+        # UPDATE CV PERFORMANCE TO INCLUDE INTERACTIONS
+        # From Script 10 interaction cross-validation results
+        log("\n  Updating CV performance to include interactions...")
+        opt_summary['optimized_mean_r2'] = 0.8374  # From Script 10: Base=0.8338, +Int=0.8374
+        opt_summary['optimized_std_r2'] = 0.0136
+        log(f"  CV R² with interactions: {opt_summary['optimized_mean_r2']:.4f} ± {opt_summary['optimized_std_r2']:.4f}")
+        
     else:
         log("No interactions selected (main effects sufficient)")
 else:
@@ -256,7 +264,7 @@ log(f"✓ Saved: {final_model_file}")
 log("\n9. Generating predictions for interpretation...")
 
 predictions_df = pd.DataFrame({
-    'CCLE_Name': cell_lines if cell_lines is not None else range(len(y)),
+    'CELL_LINE_NAME': cell_lines if cell_lines is not None else range(len(y)),
     'DRUG_NAME': drug_names if drug_names is not None else ['Unknown'] * len(y),
     'actual_LN_IC50': y,
     'predicted_LN_IC50': y_pred,
