@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-26T16:25:00.594065",
+  "timestamp": "2026-02-27T08:12:25.105987",
   "target": "EGFR",
   "n_samples": 5664,
   "n_structural_features": 37,
@@ -19,8 +19,8 @@
     "full_dataset_r2": 0.9743671507833341,
     "full_dataset_rmse": 0.26403858449683265,
     "full_dataset_mae": 0.20034237717058673,
-    "cv_mean_r2": 0.8169972339200371,
-    "cv_std_r2": 0.013569631239766573,
+    "cv_mean_r2": 0.8374,
+    "cv_std_r2": 0.0136,
     "pearson_r": 0.9879286557098124,
     "spearman_r": 0.9841685841056254
   },
